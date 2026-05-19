@@ -191,27 +191,20 @@ namespace Opm {
     ///    Darcy's law
     ///    @f[
     ///     \begin{aligned}
-    ///         v &= -K\lambda(\nabla p + \rho\vec{g}), \\
-    ///         \nabla\cdot v &= q.
+    ///         v &= -K\lambda(\nabla p + \rho\vec{g}), \\ \nabla\cdot v &= q.
     ///     \end{aligned}
     ///    @f]
     ///    The solver is based on a hybrid discretization scheme which
     ///    yields a system of linear equations of the form
     ///    @f[
     ///     \begin{bmatrix}
-    ///        B & C & D \\
-    ///        C^{T} & 0 & 0 \\
-    ///        D^{T} & 0 & 0
+    ///        B & C & D \\ C^{T} & 0 & 0 \\ D^{T} & 0 & 0
     ///     \end{bmatrix}\,
     ///     \begin{bmatrix}
-    ///         v \\
-    ///         p \\
-    ///         \pi
+    ///         v \\ p \\ \pi
     ///     \end{bmatrix} =
     ///     \begin{bmatrix}
-    ///         f \\
-    ///         g \\
-    ///         h
+    ///         f \\ g \\ h
     ///     \end{bmatrix}
     ///    @f]
     ///    where @f$v@f$ represents the interface fluxes for each
@@ -223,19 +216,13 @@ namespace Opm {
     ///    form
     ///    @f[
     ///     \begin{bmatrix}
-    ///        B & C & D \\
-    ///        0 & -L & -F \\
-    ///        0 & 0 & S
+    ///        B & C & D \\ 0 & -L & -F \\ 0 & 0 & S
     ///     \end{bmatrix}\,
     ///     \begin{bmatrix}
-    ///         v \\
-    ///         -p \\
-    ///         \pi
+    ///         v \\ -p \\ \pi
     ///     \end{bmatrix} =
     ///     \begin{bmatrix}
-    ///         f \\
-    ///         \hat{g} \\
-    ///         r
+    ///         f \\ \hat{g} \\ r
     ///     \end{bmatrix}
     ///    @f]
     ///    where @f$L = C^{T}B^{-1}C@f$, @f$F=C^{T}B^{-1}D@f$, and
@@ -250,8 +237,7 @@ namespace Opm {
     ///    systems
     ///    @f[
     ///     \begin{aligned}
-    ///         Lp &= \hat{g} + F\pi \\
-    ///         Bv &= f + Cp - D\pi
+    ///         Lp &= \hat{g} + F\pi \\ Bv &= f + Cp - D\pi
     ///     \end{aligned}
     ///    @f]
     ///    Specifically, the matrix @f$L@f$ is diagonal (a single
