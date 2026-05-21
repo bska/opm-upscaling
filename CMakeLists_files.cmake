@@ -89,11 +89,6 @@ list (APPEND TEST_DATA_FILES
 list (APPEND EXAMPLE_SOURCE_FILES
   examples/aniso_implicitcap_test.cpp
   examples/aniso_simulator_test.cpp
-  examples/cpchop.cpp
-  examples/cpchop_depthtrend.cpp
-  examples/cpregularize.cpp
-  examples/exp_variogram.cpp
-  examples/grdecldips.cpp
   examples/implicitcap_test.cpp
   examples/known_answer_test.cpp
   examples/mimetic_aniso_solver_test.cpp
@@ -102,14 +97,6 @@ list (APPEND EXAMPLE_SOURCE_FILES
   examples/sim_steadystate_explicit.cpp
   examples/sim_steadystate_implicit.cpp
   examples/steadystate_test_implicit.cpp
-  examples/upscale_avg.cpp
-  examples/upscale_cap.cpp
-  examples/upscale_cond.cpp
-  examples/upscale_perm.cpp
-  examples/upscale_relperm.cpp
-  examples/upscale_relpermvisc.cpp
-  examples/upscale_steadystate_implicit.cpp
-  examples/upscale_elasticity.cpp
   tests/compareUpscaling.cpp
 )
 
