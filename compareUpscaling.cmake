@@ -45,7 +45,7 @@ macro (add_test_upscale_perm gridname bcs rows)
   # Ensure unique output folder per test (because this folder is deleted in the test driver script)
   set(TEST_NAME upscale_perm_BC${bcs}_${gridname})
   set(RESULT_PATH ${BASE_RESULT_PATH}/${TEST_NAME})
-  opm_add_test(${TEST_NAME} NO_COMPILE
+  opm_add_test(${TEST_NAME}
     EXE_TARGET
       upscale_perm
     DRIVER_ARGS
@@ -87,7 +87,7 @@ macro (add_test_upscale_relperm testname gridname stonefiles rows cols nproc)
   foreach(stonefile ${stonefiles})
     list(APPEND test_args ${INPUT_DATA_PATH}/grids/${stonefile})
   endforeach()
-  opm_add_test(${TEST_NAME} NO_COMPILE
+  opm_add_test(${TEST_NAME}
     EXE_TARGET
       upscale_relperm
     DRIVER_ARGS
@@ -119,7 +119,7 @@ macro (add_test_upscale_elasticity gridname method)
   # Ensure unique output folder per test (because this folder is deleted in the test driver script)
   set(TEST_NAME upscale_elasticity_${method}_${gridname})
   set(RESULT_PATH ${BASE_RESULT_PATH}/${TEST_NAME})
-  opm_add_test(${TEST_NAME} NO_COMPILE
+  opm_add_test(${TEST_NAME}
     EXE_TARGET
       upscale_elasticity
     DRIVER_ARGS
@@ -150,7 +150,7 @@ macro (add_test_cpchop gridname)
   # Ensure unique output folder per test (because this folder is deleted in the test driver script)
   set(TEST_NAME cpchop_${gridname})
   set(RESULT_PATH ${BASE_RESULT_PATH}/${TEST_NAME})
-  opm_add_test(${TEST_NAME} NO_COMPILE
+  opm_add_test(${TEST_NAME}
     EXE_TARGET
       cpchop
     DRIVER_ARGS
