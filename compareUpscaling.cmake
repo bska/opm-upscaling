@@ -49,7 +49,7 @@ macro (add_test_upscale_perm gridname bcs rows)
                EXE_NAME upscale_perm
                DRIVER_ARGS -i ${INPUT_DATA_PATH}
                            -r ${RESULT_PATH}
-                           -b ${PROJECT_BINARY_DIR}/bin
+                           -c $<TARGET_FILE:compareUpscaling>
                            -n upscale_perm_BC${bcs}_${gridname}
                            -a ${abstol}
                            -t ${reltol}
@@ -87,7 +87,7 @@ macro (add_test_upscale_relperm testname gridname stonefiles rows cols nproc)
                EXE_NAME upscale_relperm
                DRIVER_ARGS -i ${INPUT_DATA_PATH}
                            -r ${RESULT_PATH}
-                           -b ${PROJECT_BINARY_DIR}/bin
+                           -c $<TARGET_FILE:compareUpscaling>
                            -n upscale_relperm_${testname}
                            -a ${abstol}
                            -t ${reltol}
@@ -115,7 +115,7 @@ macro (add_test_upscale_elasticity gridname method)
                EXE_NAME upscale_elasticity
                DRIVER_ARGS -i ${INPUT_DATA_PATH}
                            -r ${RESULT_PATH}
-                           -b ${PROJECT_BINARY_DIR}/bin
+                           -c $<TARGET_FILE:compareUpscaling>
                            -n upscale_elasticity_${method}_${gridname}
                            -a ${abstol}
                            -t ${reltol}
@@ -142,7 +142,7 @@ macro (add_test_cpchop gridname)
                EXE_NAME cpchop
                DRIVER_ARGS -i ${INPUT_DATA_PATH}
                            -r ${RESULT_PATH}
-                           -b ${PROJECT_BINARY_DIR}/bin
+                           -c $<TARGET_FILE:compareUpscaling>
                            -n cpchop_${gridname}
                            -a ${abstol}
                            -t ${reltol}
