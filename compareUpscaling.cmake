@@ -46,16 +46,20 @@ macro (add_test_upscale_perm gridname bcs rows)
   set(TEST_NAME upscale_perm_BC${bcs}_${gridname})
   set(RESULT_PATH ${BASE_RESULT_PATH}/${TEST_NAME})
   opm_add_test(${TEST_NAME} NO_COMPILE
-               EXE_NAME upscale_perm
-               DRIVER_ARGS -i ${INPUT_DATA_PATH}
-                           -r ${RESULT_PATH}
-                           -b ${PROJECT_BINARY_DIR}/bin
-                           -n upscale_perm_BC${bcs}_${gridname}
-                           -a ${abstol}
-                           -t ${reltol}
-               TEST_ARGS -bc ${bcs}
-                         -output ${RESULT_PATH}/upscale_perm_BC${bcs}_${gridname}.txt
-                         ${INPUT_DATA_PATH}/grids/${gridname}.grdecl)
+    EXE_TARGET
+      upscale_perm
+    DRIVER_ARGS
+      -i ${INPUT_DATA_PATH}
+      -r ${RESULT_PATH}
+      -c $<TARGET_FILE:compareUpscaling>
+      -n upscale_perm_BC${bcs}_${gridname}
+      -a ${abstol}
+      -t ${reltol}
+    TEST_ARGS
+      -bc ${bcs}
+      -output ${RESULT_PATH}/upscale_perm_BC${bcs}_${gridname}.txt
+      ${INPUT_DATA_PATH}/grids/${gridname}.grdecl
+  )
 endmacro (add_test_upscale_perm)
 
 ###########################################################################
@@ -84,15 +88,19 @@ macro (add_test_upscale_relperm testname gridname stonefiles rows cols nproc)
     list(APPEND test_args ${INPUT_DATA_PATH}/grids/${stonefile})
   endforeach()
   opm_add_test(${TEST_NAME} NO_COMPILE
-               EXE_NAME upscale_relperm
-               DRIVER_ARGS -i ${INPUT_DATA_PATH}
-                           -r ${RESULT_PATH}
-                           -b ${PROJECT_BINARY_DIR}/bin
-                           -n upscale_relperm_${testname}
-                           -a ${abstol}
-                           -t ${reltol}
-                           -p ${nproc}
-               TEST_ARGS ${test_args})
+    EXE_TARGET
+      upscale_relperm
+    DRIVER_ARGS
+      -i ${INPUT_DATA_PATH}
+      -r ${RESULT_PATH}
+      -c $<TARGET_FILE:compareUpscaling>
+      -n upscale_relperm_${testname}
+      -a ${abstol}
+      -t ${reltol}
+      -p ${nproc}
+    TEST_ARGS
+      ${test_args}
+  )
   set_tests_properties(${TEST_NAME} PROPERTIES PROCESSORS ${nproc})
 endmacro ()
 
@@ -112,17 +120,21 @@ macro (add_test_upscale_elasticity gridname method)
   set(TEST_NAME upscale_elasticity_${method}_${gridname})
   set(RESULT_PATH ${BASE_RESULT_PATH}/${TEST_NAME})
   opm_add_test(${TEST_NAME} NO_COMPILE
-               EXE_NAME upscale_elasticity
-               DRIVER_ARGS -i ${INPUT_DATA_PATH}
-                           -r ${RESULT_PATH}
-                           -b ${PROJECT_BINARY_DIR}/bin
-                           -n upscale_elasticity_${method}_${gridname}
-                           -a ${abstol}
-                           -t ${reltol}
-               TEST_ARGS output=${RESULT_PATH}/upscale_elasticity_${method}_${gridname}.txt
-                         gridfilename=${INPUT_DATA_PATH}/grids/${gridname}.grdecl
-                         output_wave_speeds=true
-                         method=${method})
+    EXE_TARGET
+      upscale_elasticity
+    DRIVER_ARGS
+      -i ${INPUT_DATA_PATH}
+      -r ${RESULT_PATH}
+      -c $<TARGET_FILE:compareUpscaling>
+      -n upscale_elasticity_${method}_${gridname}
+      -a ${abstol}
+      -t ${reltol}
+    TEST_ARGS
+      output=${RESULT_PATH}/upscale_elasticity_${method}_${gridname}.txt
+      gridfilename=${INPUT_DATA_PATH}/grids/${gridname}.grdecl
+      output_wave_speeds=true
+      method=${method}
+  )
 endmacro ()
 
 # TEST: cpchop
@@ -139,15 +151,20 @@ macro (add_test_cpchop gridname)
   set(TEST_NAME cpchop_${gridname})
   set(RESULT_PATH ${BASE_RESULT_PATH}/${TEST_NAME})
   opm_add_test(${TEST_NAME} NO_COMPILE
-               EXE_NAME cpchop
-               DRIVER_ARGS -i ${INPUT_DATA_PATH}
-                           -r ${RESULT_PATH}
-                           -b ${PROJECT_BINARY_DIR}/bin
-                           -n cpchop_${gridname}
-                           -a ${abstol}
-                           -t ${reltol}
-               TEST_ARGS resultfile=${RESULT_PATH}/cpchop_${gridname}.txt use_random=false
-                         gridfilename=${INPUT_DATA_PATH}/grids/${gridname}.grdecl)
+    EXE_TARGET
+      cpchop
+    DRIVER_ARGS
+      -i ${INPUT_DATA_PATH}
+      -r ${RESULT_PATH}
+      -c $<TARGET_FILE:compareUpscaling>
+      -n cpchop_${gridname}
+      -a ${abstol}
+      -t ${reltol}
+    TEST_ARGS
+      resultfile=${RESULT_PATH}/cpchop_${gridname}.txt
+      use_random=false
+      gridfilename=${INPUT_DATA_PATH}/grids/${gridname}.grdecl
+  )
 endmacro ()
 
 # Make sure that we build the helper executable before running tests
